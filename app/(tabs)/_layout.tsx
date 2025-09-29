@@ -1,9 +1,8 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
-import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
@@ -12,9 +11,23 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#FF6B6B',
+        tabBarInactiveTintColor: '#666666',
         headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarStyle: {
+          backgroundColor: '#FFFFFF',
+          paddingVertical: 5,
+          height: 60,
+          borderTopWidth: 1,
+          borderTopColor: '#E5E5E5',
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          marginBottom: 5,
+        },
+        tabBarIconStyle: {
+          marginTop: 5,
+        },
       }}>
       <Tabs.Screen
         name="index"
@@ -24,10 +37,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="menu"
+        options={{
+          title: 'Menu',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.bullet" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="contact"
+        options={{
+          title: 'Contact',
+          tabBarIcon: ({ color }) => <MaterialIcons name="contact-phone" size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
         }}
       />
     </Tabs>
